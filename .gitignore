@@ -1,2 +1,4 @@
 *.json
 tasks.*
+__pycache__/
+*.py[cod]
