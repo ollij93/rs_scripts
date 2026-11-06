@@ -46,16 +46,64 @@ python3 skill_xp_difference.py PLAYER_A PLAYER_B
 
 The difference is `PLAYER_B XP - PLAYER_A XP`. The script prints signed values and sorts from the lowest difference to the highest. A negative value means PLAYER_A has more XP. A positive value means PLAYER_B has more XP. In a terminal, the higher XP value for each skill is green and the lower is red. Ties are uncoloured.
 
-## Trailblazer Reloaded tasks
+## Other account comparisons
 
-Compare task names for two players:
+These scripts accept one or more player names unless the command says otherwise.
+
+Compare quest completion states:
 
 ```sh
-python3 trailblazer_reloaded.py PLAYER_A PLAYER_B
+python3 quest_comparison.py PLAYER_A PLAYER_B [PLAYER_C ...]
 ```
 
-The script reads task IDs and names from the Old School RuneScape Wiki task list. The Wiki Sync API can reject a league profile even when the Wiki still lists its tasks. For example, the API currently returns `Cannot query data for this world type.` for the `TRAILBLAZER_RELOADED_LEAGUE` profile.
+The table uses ✅ for completed quests, ⏳ for quests in progress, and ❌ for quests that have not started. In a terminal, completed and incomplete cells use green and red when players differ. In-progress and not-started quests both count as incomplete for this color comparison.
+
+Compare boss and raid kill counts:
+
+```sh
+python3 boss_kill_comparison.py PLAYER_A PLAYER_B [PLAYER_C ...]
+```
+
+In a terminal, green marks the highest available kill count and red marks the lowest for each boss or raid. Ties are uncoloured.
+
+Compare clue counts and other Hiscores activities:
+
+```sh
+python3 activity_comparison.py PLAYER_A PLAYER_B [PLAYER_C ...]
+```
+
+These scripts read named activities and scores from the official Hiscores. An unavailable score appears as `N/A`; it does not mean zero.
+
+In a terminal, green marks the highest available score and red marks the lowest for each activity. Ties are uncoloured.
+
+Compare achievement diary progress by region and tier:
+
+```sh
+python3 achievement_diary_comparison.py PLAYER_A PLAYER_B [PLAYER_C ...]
+```
+
+In a terminal, green marks the highest completed task count and red marks the lowest for each region and tier. Ties and `N/A` values are uncoloured.
+
+Compare completed combat achievements:
+
+```sh
+python3 combat_achievement_comparison.py PLAYER_A PLAYER_B [PLAYER_C ...]
+```
+
+Compare unlocked music tracks:
+
+```sh
+python3 music_track_comparison.py PLAYER_A PLAYER_B [PLAYER_C ...]
+```
+
+Compare sea charting progress:
+
+```sh
+python3 sea_charting_comparison.py PLAYER_A PLAYER_B [PLAYER_C ...]
+```
+
+The WikiSync response provides numeric IDs for combat achievements and sea charting. Both scripts use bundled ID-to-name catalogs, so name lookup does not depend on a live Wiki request. The combat achievement catalog comes from [osrs-tools](https://github.com/jamescer/osrs-tools/tree/master/src/runescape/model/combat-achievements/tasks). The sea charting catalog comes from the [OSRS Wiki sea charting task table](https://oldschool.runescape.wiki/w/Sea_charting).
 
 ## Requirements
 
-Python 3, `curl`, and network access are required. The collection-log script also needs the Wiki collection log table. The Trailblazer script needs the Wiki task page to remain available and keep its task table structure.
+Python 3, `curl`, and network access are required. The collection-log script needs the Wiki collection log table.

@@ -1,4 +1,6 @@
 *.json
+!combat_achievement_names.json
+!sea_charting_names.json
 tasks.*
 __pycache__/
 *.py[cod]
