@@ -28,6 +28,24 @@ python3 collection_log.py PLAYER_A PLAYER_B [PLAYER_C ...]
 
 The script queries the `STANDARD` profile for every account name and compares the `collection_log` field. The API returns item IDs. The script reads item names and global completion rates from the Wiki collection log table, then prints a table for items held by any player. The heading shows each player's slot count. IDs that do not appear in the table are looked up on the Wiki and show `N/A` for the global rate. Every account needs collection-log data in WikiSync.
 
+## Skill levels and XP
+
+Compare skill levels and XP for any number of players:
+
+```sh
+python3 skill_comparison.py PLAYER_A PLAYER_B [PLAYER_C ...]
+```
+
+The script reads level and XP data from the Old School RuneScape hiscores. It prints one row for each skill. In a terminal, green marks the highest level or XP across the accounts for that skill, and red marks the lowest. It does not colour values when all accounts have the same value.
+
+Compare XP differences for exactly two players:
+
+```sh
+python3 skill_xp_difference.py PLAYER_A PLAYER_B
+```
+
+The difference is `PLAYER_B XP - PLAYER_A XP`. The script prints signed values and sorts from the lowest difference to the highest. A negative value means PLAYER_A has more XP. A positive value means PLAYER_B has more XP. In a terminal, the higher XP value for each skill is green and the lower is red. Ties are uncoloured.
+
 ## Trailblazer Reloaded tasks
 
 Compare task names for two players:
